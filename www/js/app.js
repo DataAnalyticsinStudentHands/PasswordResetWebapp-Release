@@ -14,10 +14,10 @@ var passwordResetModule = angular.module('databaseModule', [
 
 passwordResetModule.config(
     function($stateProvider, $urlRouterProvider) {
-        $urlRouterProvider.otherwise("/requestReset");
+        $urlRouterProvider.otherwise("/requestReset/");
         $stateProvider.
             state('requestReset', {
-                url: "/requestReset",
+                url: "/requestReset/:ws",
                 views: {
                     "app": { templateUrl: "partials/requestReset.html", controller: "requestResetCtrl"}
                 },
@@ -31,13 +31,13 @@ passwordResetModule.config(
                 authenticate: false
             }).
             state('resetPassword', {
-                url: "/resetPassword/uid/:uid/token/:token/uin/:uin",
+                url: "/resetPassword/uid/:uid/token/:token/uin/:uin/ws/:ws",
                 views: {
                     "app": { templateUrl: "partials/resetPassword.html", controller: "resetPasswordCtrl"}
                 },
                 resolve: {
                     validity: function(userService, $stateParams, $state){
-                        return userService.verifyToken($stateParams.token, $stateParams.uid).then(function(success){
+                        return userService.verifyToken($stateParams.token, $stateParams.uid, $stateParams.ws).then(function(success){
                             return success;
                         }, function(){
                             $state.go('message', {message: "Invalid URL"});

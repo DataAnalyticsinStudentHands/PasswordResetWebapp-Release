@@ -2,12 +2,13 @@
 /* Controllers */
 var formBuilderController = angular.module('passwordResetControllerModule', []);
 
-formBuilderController.controller('requestResetCtrl', ['$scope', 'userService', 'ngNotify',
-    function($scope, userService, ngNotify) {
+formBuilderController.controller('requestResetCtrl', ['$scope', 'userService', 'ngNotify', '$state', '$stateParams',
+    function($scope, userService, ngNotify, $state, $stateParams) {
         $scope.submit = function() {
             $('body').removeClass('loaded');
-            userService.sendTokenRequest($scope.userName).then(function(data){
+            userService.sendTokenRequest($scope.userName, $stateParams.ws).then(function(data){
                 ngNotify.set(data, "success");
+                $state.go('message', {message: "Please check your e-mail!"});
                 $('body').addClass('loaded');
             }, function(error){
                 ngNotify.set(error, "error");
@@ -27,7 +28,7 @@ formBuilderController.controller('resetPasswordCtrl', ['$scope', '$state', 'Auth
                 $('body').removeClass('loaded');
                 var salt = "nfp89gpe";
                 var pw = String(CryptoJS.SHA512($scope.pw1 + $stateParams.uin + salt));
-                userService.sendPasswordReset($stateParams.token, $stateParams.uid, pw).then(function(success){
+                userService.sendPasswordReset($stateParams.token, $stateParams.uid, pw, $stateParams.ws).then(function(success){
                     ngNotify.set(success, "success");
                     $('body').addClass('loaded');
                     $state.go('message', {message: "Password successfully changed!"});
