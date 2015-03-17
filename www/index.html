@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en" ng-app="databaseModule">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title>Password Reset</title>
+
+    <!-- ANGULAR + BOOTSTRAP + RESTANGULAR + JQUERY + UI-ROUTER -->
+    <script src="lib/angular/angular.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script src="lib/angular-ui-router/release/angular-ui-router.js"></script>
+    <script src="lib/lodash/dist/lodash.underscore.js"></script>
+    <script src="lib/restangular/dist/restangular.min.js"></script>
+    <script src="lib/angular-sanitize/angular-sanitize.min.js"></script>
+
+    <!-- THE APP -->
+    <script src="js/app.js"></script>
+    <script src="js/controllers.js"></script>
+    <script src="js/srvDatabase.js"></script>
+    <script src="js/srvForm.js"></script>
+
+    <!-- MISC -->
+    <script src="module/ng-notify/src/scripts/ng-notify.js"></script>
+    <script src="http://crypto-js.googlecode.com/svn/tags/3.1.2/build/rollups/sha512.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" type="text/css" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="module/ng-notify/src/styles/ng-notify.css">
+    <link rel="stylesheet" type="text/css" href="css/site.css">
+    <link rel="stylesheet" type="text/css" href="module/css3-preloader/css/loader.css">
+</head>
+<body>
+<div ui-view="app"></div>
+<div id="loader-wrapper">
+    <div id="loader"></div>
+</div>
+</body>
+</html>
