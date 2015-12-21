@@ -14,7 +14,7 @@ fbService.factory('userService', ['Restangular', '$q', '$filter', function(Resta
                             return RestangularConfigurer.setBaseUrl('http://localhost:8080/RESTFUL-WS');
                             break;
                         default:
-                            return RestangularConfigurer.setBaseUrl('https://www.housuggest.org:8443/'+ws);
+                            return RestangularConfigurer.setBaseUrl('https://hnetdev.hnet.uh.edu:8443/'+ws);
                             break;
                     }
                 });
