@@ -45,6 +45,23 @@ passwordResetModule.config(
                     }
                 },
                 authenticate: false
+            }).
+            state('emailValidate', {
+                url: "/emailValidate/uid/:uid/token/:token/uin/:uin/ws/:ws",
+                views: {
+                    "app": { templateUrl: "partials/message.html" }
+                },
+                resolve: {
+                    activation: function(userService, $stateParams, $state){
+                        return userService.activate($stateParams.token, $stateParams.uid, $stateParams.ws).then(function(success){
+                            $state.go('message', {message: "Account successfully activated."});
+                            return success;
+                        }, function(){
+                            $state.go('message', {message: "Invalid URL"});
+                        });
+                    }
+                },
+                authenticate: false
             });
     });
 

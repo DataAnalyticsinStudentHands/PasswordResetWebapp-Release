@@ -36,6 +36,10 @@ fbService.factory('userService', ['Restangular', '$q', '$filter', function(Resta
         verifyToken:
             function(token, uid, ws) {
                 return this.getRestangular(ws).all("users").all(uid).one("tokenValidation").get({token: token});
+            },
+        activate:
+            function(token, uid, ws) {
+                return this.getRestangular(ws).all("users").all(uid).one("tokenValidation").get({token: token});
             }
     }
 }]);
